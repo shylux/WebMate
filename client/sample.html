@@ -8,10 +8,23 @@
 	function testwebmate() {
 		pushWebMateData($('#inputdata').val());
 	}
+
+function generateString(length) {
+	var out = "";
+	do {
+		out += "I" + (out.length+1);
+	} while (out.length < length);
+	return out;
+}
 	</script>
         <title>WebMate Web Interface</title>
 </head>
 <body>
+	<h1>WebMate</h1>
+	<p>WebMate is a framework with the task to exchange data between website and desktop application.</p>
+	<p>It's pretty simple. The desktop application acts as a server. The website connects with a request to localhost and passes the data.</p>
+	<p>Please take a look into my (crappy) code: <a href="https://github.com/shylux/WebMate">WebMate on Github</a></p>
+	<input type="number" value="20" /><br />
 	<input id="inputdata" />
 	<input value="Send" type="button" onclick="javascript:testwebmate();" />
 </body>
