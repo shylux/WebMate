@@ -8,6 +8,7 @@
 	function testwebmate() {
 		pushWebMateData($('#inputdata').val());
 	}
+
   var sizeStart;
   function sizeStressOutput(data) {
     var elapsed = new Date().getTime() - sizeStart;
@@ -47,7 +48,10 @@
         <title>WebMate Web Interface</title>
 </head>
 <body>
-  <h1>WebMate Test</h1>
+	<h1>WebMate</h1>
+	<p>WebMate is a framework with the task to exchange data between a website and desktop application.</p>
+	<p>It's pretty simple. The desktop application acts as a server. The website connects with a request to localhost and passes the data.</p>
+	<p>Please take a look into my code: <a href="https://github.com/shylux/WebMate">WebMate on Github</a></p>
   <p><b>Check the requests in your debugging plugin!</b><p>
   <h2>Simple Data Push</h2>
 	<input id="inputdata" />
