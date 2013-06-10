@@ -1,18 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
 	<script type="text/javascript" src="webmatelib.js"></script>
 	<script type="text/javascript">
 	function testwebmate() {
 		pushWebMateData($('#inputdata').val());
 	}
+  var sizeStart;
+  function sizeStressOutput(data) {
+    var elapsed = new Date().getTime() - sizeStart;
+    $('#outputSize').text(elapsed + "ms for " + $('#StressTestSize').val() + " characters.");
+  }
+  function sizeStressTest() {
+    sizeStart = new Date().getTime();
+    pushWebMateData(randomText($('#StressTestSize').val()), sizeStressOutput);
+  }
+
+  var count = 0;
+  var lock = false;
+  function unlockStream(data) {lock = false;}
+  function streamStressTest() {
+    count = 0;
+    lock = false;
+    var max = parseInt($('#StressTestCount').val());
+    var start = new Date().getTime();
+    while (!lock) {
+      lock = true;
+      if (count >= max) break;
+      count++;
+      pushWebMateData("nop", unlockStream);
+    }
+    var elapsed = new Date().getTime() - start;
+    $('#outputStream').text(elapsed + "ms for " + count + " requests.");
+  }
+
+  function randomText(size) {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for( var i=0; i < size; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      return text;
+  }
 	</script>
         <title>WebMate Web Interface</title>
 </head>
 <body>
+  <h1>WebMate Test</h1>
+  <p><b>Check the requests in your debugging plugin!</b><p>
+  <h2>Simple Data Push</h2>
 	<input id="inputdata" />
 	<input value="Send" type="button" onclick="javascript:testwebmate();" />
+  <h2>Data Size Stress Test</h2>
+  <input id="StressTestSize" type="number" value="1000000" />
+  random characters
+	<input value="Send" type="button" onclick="javascript:sizeStressTest();" />
+  <span id="outputSize"></span>
+  <h2>Stream Stress Test</h2>
+  <input id="StressTestCount" type="number" value="20" />
+  sequentially calls
+	<input value="Send" type="button" onclick="javascript:streamStressTest();" />
+  <span id="outputStream"></span>
 </body>
 </html>

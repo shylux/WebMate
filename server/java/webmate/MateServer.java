@@ -90,7 +90,8 @@ public class MateServer extends Thread {
 						}
 						
 						if (params.containsKey(MateServer.REQUEST_KEY)) {
-							Log.info(String.format("Invoke listener with: %s", params.get(MateServer.REQUEST_KEY)));
+							String data = params.get(MateServer.REQUEST_KEY);
+							Log.info(String.format("Received Chars: %d, Data: %s", data.length(), (data.length()>100)?data.substring(0, 40) + ".........." + data.substring(data.length()-60):data)); // prevent log flooding
 							callback.onWebMateData(params.get(MateServer.REQUEST_KEY));
 						}
 					}

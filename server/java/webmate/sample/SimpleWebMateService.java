@@ -9,7 +9,6 @@ public class SimpleWebMateService implements IWebMateListener {
 
         @Override
         public void onWebMateData(String data) {
-                System.out.format("WebMateData: %s\n", data);
         }
 
         /**
