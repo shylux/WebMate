@@ -52,7 +52,9 @@
 	<p>WebMate is a framework with the task to exchange data between a website and desktop application.</p>
 	<p>It's pretty simple. The desktop application acts as a server. The website connects with a request to localhost and passes the data.</p>
 	<p>Please take a look into my code: <a href="https://github.com/shylux/WebMate">WebMate on Github</a></p>
-  <p><b>Check the requests in your debugging plugin!</b><p>
+  <p><b>Check the requests in your debugging plugin! (might freeze)</b><p>
+  <h2>Server software</h2>
+  <a href="../server/java/webmate.jar">Console-example in Java</a> Run with <code>java -jar webmate.jar</code>
   <h2>Simple Data Push</h2>
 	<input id="inputdata" />
 	<input value="Send" type="button" onclick="javascript:testwebmate();" />
@@ -66,5 +68,33 @@
   sequentially calls
 	<input value="Send" type="button" onclick="javascript:streamStressTest();" />
   <span id="outputStream"></span>
+  <h2>My Test Results</h2>
+  <p>Im not sure if my server is a bottleneck. I got different results so i think its ok.</p>
+  <table style="text-align:left">
+	  <thead>
+	  	<tr>
+			<th>Browser</th>
+			<th>KB/s (Chunk of data)</th>
+			<th>Requests/s</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr>
+			<td>Google Chrome 30.0 dev</td>
+			<td>120 KB/s</td>
+			<td>1000 Requests/s</td>
+		</tr>
+		<tr>
+			<td>Mozilla Firefox 23.0 beta</td>
+			<td>430 KB/s</td>
+			<td>2300 Requests/s</td>
+		</tr>
+		<tr>
+			<td>Microsoft IE 10</td>
+			<td>300 KB/s</td>
+			<td>1000 Requests/s</td>
+	  </tbody>
+  </table>
+
 </body>
 </html>
